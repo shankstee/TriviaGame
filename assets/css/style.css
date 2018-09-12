@@ -1,0 +1,37 @@
+.title {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.question {
+    text-align: center;
+}
+.timer {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.radioButton {
+    /* text-align: center; */
+}
+
+fieldset {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.startB {
+    margin: auto;
+    display: block;
+    margin-top: 50%;
+    width: 30%;
+}
+
+.question1 {
+    text-align: center;
+}
+
+label {
+    color: red;
+    padding-right: 5px;
+}
