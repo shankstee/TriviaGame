@@ -11,9 +11,6 @@
     padding-bottom: 10px;
 }
 
-.radioButton {
-    /* text-align: center; */
-}
 
 fieldset {
     text-align: center;
@@ -33,5 +30,6 @@ fieldset {
 
 label {
     color: red;
-    padding-right: 5px;
 }
+
+
