@@ -2,8 +2,6 @@ console.log("It's Linked");
 
 var correctAnswers = 0;
 var wrongAnswers = 0;
-var notAnswered = 0;
-var currentQUesion;
 var ActualTime = 90;
 
 var questionsObj = [
@@ -205,7 +203,7 @@ $(document).ready(function() {
     $("#submit").on("click", checkAnswers)
     
 
-    //notAnswered = questionsObj.length - (correctAnsweres + wrongAnswers) = notAns
+    
 
 
     
@@ -223,3 +221,5 @@ $(document).ready(function() {
 //answer is displayed along with Q1, Q2, Q3 as unchecked radio buttons within a <fieldset>, each pulled from the same obj as the asked question
 //if the radio button checked within each fieldset is equal to the answer within that obj then add 1 to corretAnswers variable else add 1 to the uncorrect variable. 
 // Display these variables in the center of the screen once the timer runs out.
+// I wish i had time to add a unanswered section
+// notAnswered = questionsObj.length - (correctAnsweres + wrongAnswers) = notAns
