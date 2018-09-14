@@ -4,6 +4,7 @@ var correctAnswers = 0;
 var wrongAnswers = 0;
 var notAnswered = 0;
 var currentQUesion;
+var ActualTime = 90;
 
 var questionsObj = [
 
@@ -20,37 +21,52 @@ var questionsObj = [
 
 },
 
-{ask: "What is LeBron's sons first name?",
- answer: "Bronny",
- As: ["Bronny","LeJames","Bron", "Jeffery"],
- inputName: "answersThree"
+{   ask: "What is LeBron's sons first name?",
+    answer: "Bronny",
+    As: ["Bronny","LeJames","Bron", "Jeffery"],
+    inputName: "answersThree"
  },
 
-{ask: "How many NBA championships has LeBron James won?",
-answer: "3",
-As: ["3","4","2", "1"],
-inputName: "answersFour"
+{   ask: "How many NBA championships has LeBron James won?",
+    answer: "3",
+    As: ["3","4","2", "1"],
+    inputName: "answersFour"
 },
 
-{ask: "How many Highschool state championships has LeBron James won?",
-answer: "3",
-As: ["4","0","2", "8"],
-inputName: "answersFive"
+{   ask: "How many Highschool state championships has LeBron James won?",
+    answer: "3",
+    As: ["4","3","2", "8"],
+    inputName: "answersFive"
 },
 
-{ask: "How many Triple Doubles has LeBron put up so far in the NBA?",
-answer: "64",
-As: ["33","55","81","64"],
-inputName: "answersSix"
+{   ask: "How many Triple Doubles has LeBron put up so far in the NBA?",
+    answer: "64",
+    As: ["33","55","81","64"],
+    inputName: "answersSix"
 },
 
-{ask: "Who is the best basketball player to ever play?",
-answer: "LeBron James",
-As: ["Brandon Roy","LeBron James","MJ", "Denis Rodmon"],
-inputName: "answersSeven"
+{   ask: "Who is the best basketball player to ever play?",
+    answer: "LeBron James",
+    As: ["Brandon Roy","LeBron James","MJ", "Denis Rodmon"],
+    inputName: "answersSeven"
 }
 
 ];
+
+function timer() {
+    intervalID = setInterval(decrement, 1000)
+    function decrement() {
+        ActualTime--;
+        $(".timer").text("You have "+ ActualTime + " seconds to complete the Quiz");
+
+        if (ActualTime <= 0) {
+            checkAnswers();
+        }
+    
+    }
+    
+    
+}
 
 
 // Create a function that starts the page off with a start button and on click begins timer and runs the full game.
@@ -58,12 +74,13 @@ inputName: "answersSeven"
 function startButton() {
     var startDiv = $("<button class='startB'>");
     startDiv.text("START");
-    $(".question1").append(startDiv);   
+    $(".questions").append(startDiv);   
 }
 // $(".quesions").empty();// empty the start button 
 // create a funcion that loads the game H1, game questions from obj and the answer/Q as radio buttons
 
 function loadQuiz() {
+    timer();
     //console.log(questionsObj[0].Qs[0]);
     for (var i = 0; i < questionsObj.length; i++) {
     
@@ -83,27 +100,117 @@ function loadQuiz() {
     }
     $(".questions").append(creatClass);// add all created elements within my static questions div
     };
+
+
 };
 
 // End of loadQuiz function
 
 
 function checkAnswers() {
-    var inputChecked = $("input");
+   
+$.each($("input[name='answersOne']:checked"), function () {
+    if ($(this).val() === questionsObj[0].answer) {
+        correctAnswers++;
+    }
+    else {
+        wrongAnswers++;
+    }
 
-    console.log(inputChecked[0])
 
+})
 
-    // console.log($("input"));
+    $.each($("input[name='answersTwo']:checked"), function () {
+        if ($(this).val() === questionsObj[1].answer) {
+            correctAnswers++;
+        }
+        else {
+            wrongAnswers++;
+        }
+
+    })
+
+    $.each($("input[name='answersThree']:checked"), function () {
+        if ($(this).val() === questionsObj[2].answer) {
+            correctAnswers++;
+        }
+        else {
+            wrongAnswers++;
+        }
+
+    })
+
+    $.each($("input[name='answersFour']:checked"), function () {
+        if ($(this).val() === questionsObj[3].answer) {
+            correctAnswers++;
+        }
+        else {
+            wrongAnswers++;
+        }
+
+    })
+
+    $.each($("input[name='answersFive']:checked"), function () {
+        if ($(this).val() === questionsObj[4].answer) {
+            correctAnswers++;
+        }
+        else {
+            wrongAnswers++;
+        }
+
+    })
+
+    $.each($("input[name='answersSix']:checked"), function () {
+        if ($(this).val() === questionsObj[5].answer) {
+            correctAnswers++;
+        }
+        else {
+            wrongAnswers++;
+        }
+
+    })
+
+    $.each($("input[name='answersSeven']:checked"), function () {
+        if ($(this).val() === questionsObj[6].answer) {
+            correctAnswers++;
+        }
+        else {
+            wrongAnswers++;
+        }
+
+    })
+
+    $(".questions").empty();
+    $(".questions").append("Correct Answers: " + correctAnswers + "<br>");
+    $(".questions").append("Wrong Answers: " + wrongAnswers);
+    $(".questions").addClass("finished");
+    $("#submit").remove();
+    $(".timer").hide();
+    $(".questions").addClass("submitColor");
+
 }
 
+    
+
+
 $(document).ready(function() {
-    // startButton();
-    loadQuiz();
-    checkAnswers();
+    $("#submit").hide();
+    startButton();
+    $(".startB").on("click", function() {
+        $(".questions").empty();
+        $("#submit").show();
+        loadQuiz();  
+    })
+
+    $("#submit").on("click", checkAnswers)
+    
+
+    //notAnswered = questionsObj.length - (correctAnsweres + wrongAnswers) = notAns
 
 
+    
 
+    
 
 });
 
